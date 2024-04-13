@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { AnimatePresence, motion } from "framer-motion";
 import { TagRole } from "../../atoms/TagRole";
 import { cardVariants, titleVariants } from "./ProjectCard.const";
@@ -35,17 +35,17 @@ export const ProjectCard = ({
         >
           {/* IMAGE */}
           <div className="ProjectCard__image absolute h-[62vh] w-full md:w-[32vw] xl:w-[20vw] max-w-[480px] bg-purple-light">
-            {/* {thumbnail && ( */}
+            {thumbnail && (
               <figure className="h-full">
-                {/* <GatsbyImage
-                  image={thumbnail.node.gatsbyImage}
-                  alt={thumbnail.node.altText}
-                  width={thumbnail.node.width}
-                  height={thumbnail.node.height}
+                <GatsbyImage
+                  image={getImage(thumbnail.localFile)}
+                  alt={thumbnail.alternativeText}
+                  width={thumbnail.width}
+                  height={thumbnail.height}
                   className="w-full h-full object-cover"
-                /> */}
+                />
               </figure>
-            {/* )} */}
+            )}
           </div>
 
           {/* TITLE */}

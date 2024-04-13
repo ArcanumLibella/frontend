@@ -4,30 +4,27 @@ import { Text } from "../atoms/Text";
 import { MainLayout } from "./MainLayout";
 import { LinkButton } from "../molecules/LinkButton";
 import { ExternalLinkButton } from "../molecules/ExternalLinkButton";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TagTechno } from "../atoms/TagTechno";
 import { ChevronsDownIcon } from "../../assets/icons";
 import { COLORS } from "../../constants/Colors";
 
-export const ProjectLayout = ({title, description, preview, slug, year, technos, links}) => {
-
+export const ProjectLayout = ({title, description, preview, year, technos, links}) => {
   return (
     <MainLayout>
       <div className="Project flex flex-col justify-between xl:flex-row md:ml-20 xl:h-screen">
         <div className="Project__preview overflow-auto w-full h-[60vh] xl:max-h-screen xl:h-screen xl:text-center bg-purple">
           <div className="flex justify-center items-end h-full w-full">
-            {/* {preview && preview.map((preview, index) => { */}
-              {/* return ( */}
-                <figure /* key={index}  */className="Project__preview h-full">
-                  {/* <GatsbyImage
-                    image={preview.gatsbyImage}
-                    alt={preview.altText}
-                    width={preview.width}
-                    height={preview.height}
-                  /> */}
-                </figure>
-              {/* ) */}
-            {/* })} */}
+            {preview && (
+              <figure key={preview.id} className="Project__preview h-full">
+                <GatsbyImage
+                  image={getImage(preview.localFile)}
+                  alt={preview.alternativeText}
+                  width={preview.width}
+                  height={preview.height}
+                />
+              </figure>
+            )}
             <ChevronsDownIcon 
               stroke={COLORS.tomato.DEFAULT}
               width={40}

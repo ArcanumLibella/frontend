@@ -14,7 +14,7 @@ const ProjectsPage = ({ data }) => {
             title={project.node.title}
             missions={project.node.missions}
             slug={project.node.slug}
-            // thumbnail={project.node.thumbnail}
+            thumbnail={project.node.thumbnail}
           />
       ))}
     </ProjectsLayout>
@@ -31,6 +31,18 @@ export const query = graphql`
           missions {
             name
             slug
+          }
+          thumbnail {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  aspectRatio: 1
+                )
+              }
+            }
+            alternativeText
+            width
+            height
           }
         }
       }

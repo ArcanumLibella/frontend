@@ -8,9 +8,12 @@ const ProjectPage = ({ data }) => {
     description,
     slug,
     year,
+    preview,
     technos,
     links
   } = data.strapiProject
+
+  console.log("preview : ", preview)
 
   return (
     <ProjectLayout
@@ -18,6 +21,7 @@ const ProjectPage = ({ data }) => {
       description={description}
       slug={slug}
       year={year}
+      preview={preview}
       technos={technos}
       links={links}
     />
@@ -31,8 +35,22 @@ export const query = graphql`
       description
       slug
       year
+      preview {
+        id
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              width: 1200
+              placeholder: BLURRED
+            )
+          }
+        }
+        alternativeText
+        width
+        height
+      }
       technos {
-        names
+        name
         slug
       }
       links {
